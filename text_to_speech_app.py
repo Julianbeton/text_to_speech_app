@@ -11,6 +11,40 @@ root.geometry("900x450")
 root.resizable(False,False)
 root.configure(bg = "#305065")
 
+engine = pyttsx3.init()
+
+def speaknow():
+    text = text_area.get(1.0, END)
+    gender = gender_combobox.get()
+    speed = speed_combobox.get()
+    voices = engine.getProperty("Voices")
+
+    def setvoice():
+        if (gender == "Male"):
+            engine.setProperty("voice", voices[0].id)
+            engine.say(text)
+            engine.runAndWait()
+        else:
+            engine.setProperty("voice", voices[1].id)
+            engine.say(text)
+            engine.runAndWait()
+    
+
+    if (text):
+        if (speed == "Fast"):
+            engine.setProperty("rate", 250)
+            setvoice()
+        elif (speed == "Normal"):
+            engine.setProperty("rate", 150)
+        else:
+            engine.setProperty("rate", 75)
+            setvoice()
+
+def download():
+    print()
+
+
+
 #icon
 image_icon = PhotoImage(file = "speak.png")
 root.iconphoto(False, image_icon)
@@ -46,8 +80,8 @@ button = Button(root, text = "Speak", compound = LEFT, image = first_image_icon,
 button.place(x = 550, y = 280)
 
 second_image_icon = PhotoImage(file = "save.png")
-save = Button(root, text = "Speak", compound = LEFT, image = second_image_icon, width = 130, font = "arial 14 bold", command=download)
-save.place(x = 7300, y = 280)
+save = Button(root, text = "Save", compound = LEFT, image = second_image_icon, width = 130, font = "arial 14 bold", command=download)
+save.place(x = 730, y = 280)
 
 
 root.mainloop()
