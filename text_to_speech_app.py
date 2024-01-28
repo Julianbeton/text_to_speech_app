@@ -33,6 +33,10 @@ gender_combobox = Combobox(root, values =["Male", "Female"], font = "arial 14", 
 gender_combobox.place(x = 550, y = 200)
 gender_combobox.set("Male")
 
+speed_combobox = Combobox(root, values = ["Fast", "Normal", "Slow"], font = "arial 14", state = "r", width = 10)
+speed_combobox.place(x = 730, y = 200)
+speed_combobox.set("Normal")
+
 
 
 
