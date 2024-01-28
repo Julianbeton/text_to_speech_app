@@ -41,7 +41,13 @@ speed_combobox.place(x = 730, y = 200)
 speed_combobox.set("Normal")
 
 
+first_image_icon = PhotoImage(file = "speak.png")
+button = Button(root, text = "Speak", compound = LEFT, image = first_image_icon, width = 130, font = "arial 14 bold", command=speaknow)
+button.place(x = 550, y = 280)
 
+second_image_icon = PhotoImage(file = "save.png")
+save = Button(root, text = "Speak", compound = LEFT, image = second_image_icon, width = 130, font = "arial 14 bold", command=download)
+save.place(x = 7300, y = 280)
 
 
 root.mainloop()
