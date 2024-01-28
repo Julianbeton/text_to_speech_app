@@ -1,4 +1,4 @@
-import tkinter as tk
+import tkinter as Tk
 from tkinter import *
 from tkinter import filedialog
 from tkinter.ttk import Combobox
@@ -8,8 +8,8 @@ import os
 root = Tk()
 root.title("TEXT TO SPEECH")
 root.geometry("900x450")
-root.resizable(False,False)
-root.configure(bg = "#305065")
+root.resizable(False, False)
+root.configure(bg="#305065")
 
 engine = pyttsx3.init()
 
@@ -17,31 +17,54 @@ def speaknow():
     text = text_area.get(1.0, END)
     gender = gender_combobox.get()
     speed = speed_combobox.get()
-    voices = engine.getProperty("Voices")
+    voices = engine.getProperty("voices")
 
     def setvoice():
-        if (gender == "Male"):
+        if gender == "Male":
             engine.setProperty("voice", voices[0].id)
-            engine.say(text)
-            engine.runAndWait()
         else:
             engine.setProperty("voice", voices[1].id)
-            engine.say(text)
-            engine.runAndWait()
-    
+        engine.say(text)
+        engine.runAndWait()
 
-    if (text):
-        if (speed == "Fast"):
+    if text:
+        if speed == "Fast":
             engine.setProperty("rate", 250)
             setvoice()
-        elif (speed == "Normal"):
-            engine.setProperty("rate", 150)
+        elif speed == "Normal":
+            engine.setProperty("rate", 175)
+            setvoice()
         else:
             engine.setProperty("rate", 75)
             setvoice()
 
 def download():
-    print()
+    text = text_area.get(1.0, END)
+    gender = gender_combobox.get()
+    speed = speed_combobox.get()
+    voices = engine.getProperty("voices")
+
+    def setvoice():
+        if gender == "Male":
+            engine.setProperty("voice", voices[0].id)
+        else:
+            engine.setProperty("voice", voices[1].id)
+        path = filedialog.askdirectory()
+        os.chdir(path)
+        engine.save_to_file(text, "text.mp3")
+        engine.runAndWait()
+
+    if text:
+        if speed == "Fast":
+            engine.setProperty("rate", 250)
+            setvoice()
+        elif speed == "Normal":
+            engine.setProperty("rate", 175)
+            setvoice()
+        else:
+            engine.setProperty("rate", 75)
+            setvoice()
+
 
 
 
